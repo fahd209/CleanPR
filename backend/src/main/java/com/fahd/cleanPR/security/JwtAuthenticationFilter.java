@@ -36,9 +36,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws IOException, ServletException {
         try {
+            LOGGER.info("request is going through the filter URI={}", request.getRequestURI());
             Cookie[] cookies = request.getCookies();
             Cookie jwtCookie = null;
             if (cookies != null) {
+                LOGGER.info("cookies are not found in the request");
                 jwtCookie = Arrays.stream(cookies)
                         .filter(cookie -> cookie.getName().equals("jwt"))
                         .findFirst()
@@ -47,6 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             // if the cookie is expired or does not exist remove it and redirect the user back to the login
             if (jwtCookie == null) {
+                LOGGER.info("JWT cookie is not found in the request");
                 filterChain.doFilter(request, response);
                 return;
             }
@@ -56,6 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             // if the token is valid set the auth principle else redirect back to logIn
             if (!jwtService.isTokenValid(jwtToken, email)) {
+                LOGGER.info("JWT token is not valid");
                 filterChain.doFilter(request, response);
                 return;
             }

@@ -12,7 +12,7 @@ WORKDIR /app
 
 COPY --from=builder ./app/target/*.jar /app/jar-file/cleanpr.jar
 COPY /src/main/resources/application.yml /app/config/application.yml
-COPY  /app/config/private-key.pem
+COPY clean-pr.2025-09-15.private-key.pem /app/config/private-key.pem
 
 EXPOSE 8081
 

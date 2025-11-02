@@ -92,7 +92,7 @@ public class GitHubServiceCaller {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", BEARER + accessToken);
         httpHeaders.set("User-Agent", "clean-pr/1.0");
-        httpHeaders.set("Accept", "application/vnd.github+json");
+        httpHeaders.set(ACCEPT, GITHUB_REQUEST_BODY_TYPE);
 
         try {
             Map<String, Object> body = new HashMap<>();
@@ -120,6 +120,35 @@ public class GitHubServiceCaller {
                     httpEntity, String.class
             );
         }
+        return response;
+    }
+
+    /**
+     * This method is called
+     * when a user first
+     * opens a pr to let them know
+     * there PR is being reviewed
+     */
+    public ResponseEntity<String> postWelcomeMessage(
+            String url,
+            String accessToken
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", BEARER + accessToken);
+        headers.set("User-Agent", "clean-pr/1.0");
+        headers.set(ACCEPT, GITHUB_REQUEST_BODY_TYPE);
+        Map<String, Object> body = new HashMap<>();
+        body.put("body", "Thanks for using cleanPR your code is being reviewed :)");
+        body.put("event", "COMMENT");
+        HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(body, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                httpEntity,
+                String.class
+        );
+
         return response;
     }
 

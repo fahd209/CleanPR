@@ -18,9 +18,27 @@ Why it helps:
 - More consistent and focused reviews
 - Keeps a record of review status in a database for later inspection
 
+## Architecture
+
+### High level
+![High level architecture](readMeFile-images/architecture.png)
+
+### Installation low level design
+![Installation architecture](readMeFile-images/installation-event.png)
+
+
+### Repository event low level design
+![Repo event architecture](readMeFile-images/repo-event.png)
+
+
+### Pull Request event low level design
+![Pull request architecture](readMeFile-images/pull-request-event-diagram.png)
+
+
 ## Run locally (quick start)
 
 Follow these steps to clone and run CleanPR locally (frontend + backend + Postgres). Commands are shown for a bash shell.
+
 
 1. Clone the repo
 

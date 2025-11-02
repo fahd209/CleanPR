@@ -69,7 +69,6 @@ public class PullRequestHandler extends BaseEventHandler{
                     handleOpenedPullRequest(webHookPayload);
                     break;
                 case "closed":
-                    // TODO: change the status of the pr
                     handleClosedPullRequest(webHookPayload);
                     break;
                 default:
@@ -130,8 +129,12 @@ public class PullRequestHandler extends BaseEventHandler{
         // 3) get the github api access token
         String accessToken = tokenService.getAccessToken(installation.get().getAccessTokenUrl());
 
-        // 4) fetch the pr file paths
+        // post welcome message and let the user know they're code is being review
         int pullRequestNumber = (int) webHookPayload.get("number");
+        String pullRequestCommentUrl = String.format("/repos/%s/pulls/%d/reviews", repo.get().getRepoName(), pullRequestNumber);
+        gitHubServiceCaller.postWelcomeMessage(pullRequestCommentUrl, accessToken);
+
+        // 4) fetch the pr file paths
         String url = String.format("/repos/%s/pulls/%d/files", repo.get().getRepoName(), pullRequestNumber);
         JsonNode prFileInfo = gitHubServiceCaller.fetchFilePaths(accessToken, url);
 
@@ -154,8 +157,8 @@ public class PullRequestHandler extends BaseEventHandler{
         List<Map<String, Object>> codeCommentsList = convertJsonCommentsToMap(codeCommentsJson);
 
         // 7) post chat gpts response in the pr
-        String codeSummaryReviewUrl = String.format("/repos/%s/pulls/%d/reviews", repo.get().getRepoName(), pullRequestNumber);
-        ResponseEntity<String> githubCodeReviewResponse = gitHubServiceCaller.postReview(codeSummaryReviewUrl, pullRequestSummary, codeCommentsList, accessToken);
+
+        ResponseEntity<String> githubCodeReviewResponse = gitHubServiceCaller.postReview(pullRequestCommentUrl, pullRequestSummary, codeCommentsList, accessToken);
 
         // 8) change the status of pr to reviewed
         Optional<PullRequest> reviewedPR = pullRequestRepository.findById(pullRequest.getId());
@@ -214,6 +217,7 @@ public class PullRequestHandler extends BaseEventHandler{
                 .map(obj -> {
                    String url = (String) obj.get("contents_url");
 
+                   // decoding the url if its encoded
                    if (url.contains("%2F")) {
                        String decodedUrl = URLDecoder.decode(url, StandardCharsets.UTF_8);
                        return decodedUrl;

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -70,14 +71,18 @@ public class CustomOauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHa
             LOGGER.info("Token generated for userId={}", account.getUserId());
 
             // 5) create a http cookie use the jwt and redirect the user to the dash board
-            Cookie jwtCookie = new Cookie("jwt", jwt);
-            jwtCookie.setSecure(false);
-            jwtCookie.setPath("/");
-            jwtCookie.setHttpOnly(true);
 
-            // getting the expiration date for the token in ms and converting it to seconds = 86,000 seconds = 24 hours
-            jwtCookie.setMaxAge(24 * 60 * 60);
-            response.addCookie(jwtCookie);
+            // same=None and secure=true means the cookie will be sent in cross-site requests only if they are sent over HTTPS
+            // this won't work on localhost
+            ResponseCookie responseCookie = ResponseCookie.from("jwt", jwt)
+                    .httpOnly(true)
+                    .secure(true)
+                    .path("/")
+                    .maxAge(24 * 60 * 60) // 1 day
+                    .sameSite("None")
+                    .build();
+
+            response.addHeader("Set-Cookie", responseCookie.toString());
 
             // remove JSESSIONID because we'll use the jwt as a cookie
             Cookie jsessionCookie = new Cookie("JSESSIONID", null);
@@ -96,7 +101,7 @@ public class CustomOauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHa
             cookie.setPath("/");
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
-            response.sendRedirect("http://localhost:3000");
+            response.sendRedirect(CLIENT_URL);
         }
     }
 

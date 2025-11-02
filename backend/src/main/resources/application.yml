@@ -36,6 +36,7 @@ client:
 jwt:
   secret.key: ${JWT_SECRET}
 
+
 server:
   port: ${PORT:8081}
 
