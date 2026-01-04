@@ -15,19 +15,17 @@ export const fadeInUp = keyframes`
 // Dashboard Wrapper
 export const DashboardWrapper = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-  background-size: 400% 400%;
-  animation: ${gradientShift} 15s ease infinite;
+  background: linear-gradient(135deg, #f5f6f9 0%, #eef2f7 100%);
   display: flex;
 `;
 
 // Sidebar
 export const Sidebar = styled.aside`
   width: 260px;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(139, 69, 255, 0.1);
+  background: #ffffff;
+  backdrop-filter: blur(6px);
+  border-right: 1px solid rgba(11, 44, 77, 0.06);
+  box-shadow: 0 8px 28px rgba(11, 44, 77, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,9 +44,9 @@ export const SidebarTab = styled.button`
   width: 100%;
   background: ${({ className }) =>
     className && className.includes('active')
-      ? 'rgba(139, 69, 255, 0.13)'
+      ? 'rgba(11, 108, 255, 0.08)'
       : 'transparent'};
-  color: #fff;
+  color: #0b2b4a;
   border: none;
   border-radius: 12px;
   padding: 0.95rem 1.1rem;
@@ -64,14 +62,14 @@ export const SidebarTab = styled.button`
   transition: background 0.18s, color 0.18s, transform 0.18s;
 
   &:hover {
-    background: rgba(139, 69, 255, 0.09);
-    color: #e0d7fa;
+    background: rgba(11, 108, 255, 0.06);
+    color: #0b2b4a;
     transform: translateY(-1px) scale(1.01);
   }
 
   &:active {
-    background: rgba(139, 69, 255, 0.18);
-    color: #fff;
+    background: rgba(11, 108, 255, 0.12);
+    color: #0b2b4a;
     transform: none;
   }
 `;
@@ -80,15 +78,15 @@ export const SidebarTab = styled.button`
 export const ProfileSection = styled.div`
   margin-top: auto;
   width: 100%;
-  background: rgba(139, 69, 255, 0.07);
-  border-radius: 16px;
-  padding: 1.2rem 1rem 1rem 1rem;
+  background: rgba(11, 108, 255, 0.04);
+  border-radius: 12px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
-  box-shadow: 0 2px 12px rgba(139, 69, 255, 0.1);
-  animation: ${fadeInUp} 0.7s ease;
+  gap: 0.9rem;
+  box-shadow: 0 6px 18px rgba(11, 44, 77, 0.04);
+  animation: ${fadeInUp} 0.6s ease;
 
   @media (max-width: 900px) {
     gap: 0.7rem;
@@ -101,21 +99,17 @@ export const ProfileAvatar = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #8b45ff;
+  border: 2px solid #0b6cff;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(139, 69, 255, 0.13);
+  box-shadow: 0 2px 6px rgba(11, 44, 77, 0.06);
   margin-bottom: 0.3rem;
 `;
 
 export const ProfileName = styled.div`
-  color: #fff;
+  color: #0b2b4a;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #8b45ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin-bottom: 0.2rem;
 `;
 
@@ -128,9 +122,9 @@ export const LogoutButton = styled.button`
   justify-content: center;
   background: ${({ className }) =>
     className && className.includes('active')
-      ? 'rgba(139, 69, 255, 0.13)'
+      ? 'rgba(11, 108, 255, 0.08)'
       : 'transparent'};
-  color: #fff;
+  color: #0b2b4a;
   border: none;
   border-radius: 12px;
   font-size: 1.35rem;
@@ -140,14 +134,14 @@ export const LogoutButton = styled.button`
   margin-top: 0.2rem;
 
   &:hover {
-    background: rgba(139, 69, 255, 0.09);
-    color: #e0d7fa;
+    background: rgba(11, 108, 255, 0.06);
+    color: #0b2b4a;
     transform: translateY(-1px) scale(1.07);
   }
 
   &:active {
-    background: rgba(139, 69, 255, 0.18);
-    color: #fff;
+    background: rgba(11, 108, 255, 0.12);
+    color: #0b2b4a;
     transform: none;
   }
 `;

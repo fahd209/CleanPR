@@ -12,17 +12,17 @@ export const RepositoriesTabHeading = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(139, 69, 255, 0.07);
-  border-radius: 16px;
-  padding: 1.2rem 1rem 1rem 1rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 12px rgba(139, 69, 255, 0.1);
+  background: rgba(11, 108, 255, 0.05);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 6px 18px rgba(11, 44, 77, 0.04);
 `;
 
 export const RepositoriesTabTitle = styled.h2`
   font-size: 1.4rem;
   font-weight: 700;
-  color: #fff;
+  color: #0b2b4a;
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 `;
@@ -31,9 +31,9 @@ export const RepositoriesTabTitle = styled.h2`
 export const AddRepoButton = styled.button`
   background: ${({ className }) =>
     className && className.includes('active')
-      ? 'rgba(139, 69, 255, 0.13)'
-      : 'rgba(139, 69, 255, 0.10)'};
-  color: #fff;
+      ? 'rgba(11, 108, 255, 0.13)'
+      : 'rgba(11, 108, 255, 0.10)'};
+  color: #0b2b4a;
   border: none;
   border-radius: 999px; // Makes the button fully round
   padding: 0.65rem 1.4rem;
@@ -41,17 +41,17 @@ export const AddRepoButton = styled.button`
   font-weight: 500;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(139, 69, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(11, 44, 77, 0.04);
   transition: background 0.18s, color 0.18s, transform 0.18s;
   display: flex;
   align-items: center;
   gap: 0.6rem;
 
   &:hover {
-    background: rgba(139, 69, 255, 0.16);
-    color: #e0d7fa;
-    transform: translateY(-1px) scale(1.04);
-    box-shadow: 0 4px 16px rgba(139, 69, 255, 0.13);
+    background: rgba(11, 108, 255, 0.14);
+    color: #0b2b4a;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(11, 44, 77, 0.06);
   }
 
   &:active {
@@ -69,10 +69,10 @@ export const RepositoriesDivider = styled.div`
   width: 100%;
   margin: 1.2rem 0 1.5rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 1.5px solid rgba(139, 69, 255, 0.13);
-  color: #bbaaff;
+  border-bottom: 1.5px solid rgba(11, 108, 255, 0.08);
+  color: #6b7a8a;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   letter-spacing: 0.02em;
   display: flex;
   align-items: center;
@@ -87,17 +87,17 @@ export const RepositoriesTable = styled.div`
 `;
 
 export const RepositoryRow = styled.div`
-  background: rgba(139, 69, 255, 0.07);
-  border-radius: 14px;
+  background: #ffffff;
+  border-radius: 12px;
   padding: 1.1rem 1.2rem;
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  box-shadow: 0 2px 8px rgba(139, 69, 255, 0.08);
+  box-shadow: 0 12px 30px rgba(11, 44, 77, 0.06);
   transition: box-shadow 0.18s, transform 0.18s;
   &:hover {
-    box-shadow: 0 4px 16px rgba(139, 69, 255, 0.16);
-    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 18px 38px rgba(11, 44, 77, 0.08);
+    transform: translateY(-4px) scale(1.01);
   }
 `;
 
@@ -106,7 +106,7 @@ export const RepositoryName = styled.div`
   align-items: center;
   gap: 0.7rem;
   font-weight: 600;
-  color: #fff;
+  color: #0b2b4a;
   font-size: 1.08rem;
   flex: 2;
   svg {
@@ -118,7 +118,7 @@ export const RepositoryMeta = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #bbaaff;
+  color: #6b7a8a;
   font-size: 0.98rem;
   flex: 1;
 `;
@@ -128,15 +128,15 @@ export const RepositoryActions = styled.div`
   align-items: center;
   gap: 0.7rem;
   a {
-    color: #fff;
-    background: rgba(139, 69, 255, 0.13);
+    color: #0b6cff;
+    background: rgba(11, 108, 255, 0.08);
     border-radius: 50%;
     padding: 0.35rem;
     display: flex;
     align-items: center;
     transition: background 0.18s;
     &:hover {
-      background: rgba(139, 69, 255, 0.22);
+      background: rgba(11, 108, 255, 0.14);
     }
     svg {
       display: block;
@@ -145,7 +145,7 @@ export const RepositoryActions = styled.div`
 `;
 
 export const RemoveRepoButton = styled.button`
-  background: rgba(255, 106, 106, 0.10);
+  background: rgba(255, 106, 106, 0.06);
   border: none;
   border-radius: 50%;
   padding: 0.4rem;
@@ -157,11 +157,11 @@ export const RemoveRepoButton = styled.button`
   margin-left: 0.2rem;
 
   &:hover {
-    background: rgba(255, 106, 106, 0.18);
+    background: rgba(255, 106, 106, 0.14);
     transform: scale(1.08);
   }
   &:active {
-    background: rgba(255, 106, 106, 0.25);
+    background: rgba(255, 106, 106, 0.2);
   }
   svg {
     display: block;
@@ -169,7 +169,7 @@ export const RemoveRepoButton = styled.button`
 `;
 
 export const GoToRepoButton = styled.button`
-  background: rgba(139, 69, 255, 0.10);
+  background: rgba(11, 108, 255, 0.08);
   border: none;
   border-radius: 50%;
   padding: 0.4rem;
@@ -181,11 +181,11 @@ export const GoToRepoButton = styled.button`
   margin-right: 0.2rem;
 
   &:hover {
-    background: rgba(139, 69, 255, 0.18);
+    background: rgba(11, 108, 255, 0.14);
     transform: scale(1.08);
   }
   &:active {
-    background: rgba(139, 69, 255, 0.25);
+    background: rgba(11, 108, 255, 0.2);
   }
   svg {
     display: block;

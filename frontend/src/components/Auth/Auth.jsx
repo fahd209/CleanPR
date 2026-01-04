@@ -12,7 +12,8 @@ import logo from '../../assests/images/logo.png';
 
 function Auth() {
   const handleLogin = () => {
-    window.location.href="https://cleanpr-prod-5b39094b4eb0.herokuapp.com/oauth2/authorization/github"
+    console.log("hello");
+    window.location.href="http://localhost:8081/oauth2/authorization/github"
   };
 
   return (

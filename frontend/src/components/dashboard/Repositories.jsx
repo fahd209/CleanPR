@@ -17,7 +17,8 @@ function Repositories() {
   const [repositories, setRepositories] = useState([]);
   const handleAddRepository = () => {
     const url = `https://github.com/apps/clean-pr/installations/new?target_id=${user.userId}`;
-    window.location.href = url; // Redirect instead of opening a new window
+    // window.location.href = url;
+    window.open(url, "_blank")
   };
 
   // Remove repository handler

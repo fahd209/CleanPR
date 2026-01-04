@@ -3,12 +3,7 @@ import styled, { keyframes } from "styled-components";
 // Keyframe animations
 const float = keyframes`
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-`;
-
-const glow = keyframes`
-    0%, 100% { box-shadow: 0 0 20px rgba(139, 69, 255, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(139, 69, 255, 0.6), 0 0 40px rgba(139, 69, 255, 0.3); }
+    50% { transform: translateY(-6px); }
 `;
 
 const gradientShift = keyframes`
@@ -20,7 +15,7 @@ const gradientShift = keyframes`
 const fadeInUp = keyframes`
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
@@ -29,24 +24,20 @@ const fadeInUp = keyframes`
 `;
 
 export const LoadingText = styled.div`
-    color: #F5F7FA;
-    font-size: 1.5rem;
+    color: #153243;
+    font-size: 1.25rem;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 `;
 
 export const Spinner = styled.div`
-    border: 4px solid rgba(139, 69, 255, 0.2);
-    border-top: 4px solid #8b45ff;
+    border: 4px solid rgba(15, 102, 204, 0.15);
+    border-top: 4px solid #0b6cff;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
+    width: 44px;
+    height: 44px;
+    animation: spin 0.9s linear infinite;
     margin: 0 auto;
 
     @keyframes spin {
@@ -56,100 +47,77 @@ export const Spinner = styled.div`
 `;
 
 export const LogoImg = styled.img`
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     object-fit: contain;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-    padding: 16px;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(139, 69, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    animation: ${float} 3s ease-in-out infinite;
-    transition: all 0.3s ease;
+    margin-bottom: 1.25rem;
+    background: transparent;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(8, 25, 40, 0.06);
+    animation: ${float} 4s ease-in-out infinite;
+    transition: transform 0.18s ease;
 
     &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 48px rgba(139, 69, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        background: linear-gradient(135deg, #ffffff 0%, #f0f2ff 100%);
+        transform: translateY(-4px);
     }
 
     @media (max-width: 500px) {
         width: 80px;
         height: 80px;
-        margin-bottom: 1rem;
-        padding: 12px;
-        border-radius: 16px;
+        margin-bottom: 0.9rem;
+        padding: 6px;
+        border-radius: 10px;
     }
 `;
 
 export const WelcomeHeading = styled.h1`
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #8b45ff 100%);
-    background-size: 200% 200%;
-    animation: ${gradientShift} 4s ease infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #0b2b4a;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 800;
-    font-size: 2.4rem;
-    margin-bottom: 2.5rem;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.75rem;
     text-align: center;
-    letter-spacing: -0.5px;
-    animation: ${fadeInUp} 0.8s ease-out;
+    letter-spacing: -0.2px;
+    animation: ${fadeInUp} 0.6s ease-out;
 
     @media (max-width: 500px) {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
     }
 `;
 
 export const GithubButton = styled.button`
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #0b6cff;
     color: #ffffff;
     border: none;
-    border-radius: 16px;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+    border-radius: 10px;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
     margin: 0 auto;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(139, 69, 255, 0.3);
-    
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s;
-    }
-    
+    box-shadow: 0 6px 18px rgba(11, 44, 77, 0.12);
+
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 48px rgba(139, 69, 255, 0.4);
-        background: linear-gradient(135deg, #8b45ff 0%, #667eea 100%);
-        
-        &::before {
-            left: 100%;
-        }
+        box-shadow: 0 10px 26px rgba(11, 44, 77, 0.14);
+        background: #095ad1;
     }
-    
+
     &:active {
         transform: translateY(0);
     }
 
     @media (max-width: 500px) {
-        padding: 0.9rem 2rem;
-        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
     }
 `;
 
@@ -165,44 +133,27 @@ export const AuthWrapper = styled.div`
     width: 100vw;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-    background-size: 400% 400%;
-    animation: ${gradientShift} 15s ease infinite;
+    background: linear-gradient(135deg, #f5f6f9 0%, #eff2f7 100%);
     position: relative;
-    
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            radial-gradient(circle at 20% 80%, rgba(139, 69, 255, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
-        pointer-events: none;
-    }
 `;
 
 export const LoginFormContainer = styled.div`
-    height: 480px;
-    width: 420px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    max-width: 420px;
+    width: 92vw;
+    height: auto;
+    min-height: 420px;
+    border-radius: 12px;
+    background: #fafbfc;
+    border: 1px solid rgba(11, 44, 77, 0.06);
+    box-shadow: 0 20px 40px rgba(11, 44, 77, 0.12), 0 2px 8px rgba(11, 44, 77, 0.08);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3rem 2.5rem;
+    padding: 2.5rem 2rem;
     position: relative;
-    animation: ${fadeInUp} 0.6s ease-out, ${glow} 4s ease-in-out infinite;
-    
+    animation: ${fadeInUp} 0.35s ease-out;
+
     &::before {
         content: '';
         position: absolute;
@@ -210,17 +161,14 @@ export const LoginFormContainer = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 24px;
-        background: linear-gradient(135deg, rgba(139, 69, 255, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+        border-radius: 12px;
         pointer-events: none;
     }
 
     @media (max-width: 700px) {
-        width: 350px;
-        height: 450px;
-        padding: 2rem 1.5rem;
-        box-shadow: 
-            0 4px 20px rgba(0, 0, 0, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        width: 360px;
+        min-height: 380px;
+        padding: 1.75rem 1.25rem;
+        box-shadow: 0 16px 40px rgba(11, 44, 77, 0.1);
     }
 `;

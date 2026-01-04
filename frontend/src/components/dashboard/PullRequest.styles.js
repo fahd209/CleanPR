@@ -4,9 +4,9 @@ import { fadeInUp } from "./styles/Dashboard.styles";
 export const PRWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-  background-size: 400% 400%;
-  animation: ${fadeInUp} 0.7s ease;
+  background: linear-gradient(135deg, #f5f6f9 0%, #eef2f7 100%);
+  background-size: 100% 100%;
+  animation: ${fadeInUp} 0.6s ease;
   display: flex;
   flex-direction: column;
 `;
@@ -25,7 +25,7 @@ export const PRHeader = styled.div`
 `;
 
 export const PRBackButton = styled.button`
-  background: rgba(139, 69, 255, 0.10);
+  background: rgba(11, 108, 255, 0.06);
   border: none;
   border-radius: 50%;
   padding: 0.5rem;
@@ -34,13 +34,16 @@ export const PRBackButton = styled.button`
   display: flex;
   align-items: center;
   &:hover {
-    background: rgba(139, 69, 255, 0.18);
+    background: rgba(11, 108, 255, 0.12);
     transform: scale(1.08);
+  }
+  svg path {
+    stroke: #0b6cff;
   }
 `;
 
 export const PRHeading = styled.h2`
-  color: #fff;
+  color: #0b2b4a;
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0;
@@ -50,13 +53,13 @@ export const PRHeading = styled.h2`
 `;
 
 export const PRRepoTitle = styled.div`
-  color: #bbaaff;
-  font-size: 1.08rem;
+  color: #0b2b4a;
+  font-size: 1.02rem;
   font-weight: 600;
-  background: rgba(139, 69, 255, 0.07);
-  border-radius: 12px;
-  padding: 0.5rem 1.1rem;
-  margin-left: 1.2rem;
+  background: rgba(11, 108, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  margin-left: 1rem;
   @media (max-width: 600px) {
     margin-left: 0;
     text-align: right;
@@ -80,54 +83,54 @@ export const PRList = styled.ul`
 `;
 
 export const PRListItem = styled.li`
-  background: rgba(139, 69, 255, 0.07);
-  border-radius: 14px;
+  background: #ffffff;
+  border-radius: 12px;
   padding: 1.1rem 1.2rem;
   margin-bottom: 1.1rem;
-  color: #fff;
+  color: #0b2b4a;
   font-size: 1.08rem;
-  box-shadow: 0 2px 8px rgba(139, 69, 255, 0.08);
+  box-shadow: 0 12px 30px rgba(11, 44, 77, 0.06);
   transition: box-shadow 0.18s, transform 0.18s;
   display: flex;
   align-items: center;
   gap: 1rem;
   &:hover {
-    box-shadow: 0 4px 16px rgba(139, 69, 255, 0.16);
-    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 18px 38px rgba(11, 44, 77, 0.08);
+    transform: translateY(-4px) scale(1.01);
   }
 `;
 
 export const PRNoData = styled.div`
-  color: #aaa;
+  color: #6b7a8a;
   margin-top: 2rem;
   font-style: italic;
   text-align: center;
 `;
 
 export const PRAuthor = styled.div`
-  color: #bbaaff;
+  color: #6b7a8a;
   font-size: 0.98rem;
   margin-bottom: 0.2rem;
   span {
-    color: #fff;
+    color: #0b2b4a;
     font-weight: 500;
     margin-left: 0.3rem;
   }
 `;
 
 export const PRStatus = styled.div`
-  color: #bbaaff;
+  color: #6b7a8a;
   font-size: 0.98rem;
   margin-bottom: 0.2rem;
   span {
     color: ${({ status }) =>
       status === "OPEN"
-        ? "#67e8f9"
+        ? "#06b6d4"
         : status === "CLOSED"
         ? "#ff6a6a"
         : status === "REVIEWED"
-        ? "#ffd966"
-        : "#bbaaff"};
+        ? "#f59e0b"
+        : "#6b7a8a"};
     font-weight: 600;
     margin-left: 0.3rem;
     text-transform: capitalize;
@@ -135,19 +138,19 @@ export const PRStatus = styled.div`
 `;
 
 export const PRDates = styled.div`
-  color: #bbaaff;
+  color: #6b7a8a;
   font-size: 0.93rem;
   display: flex;
   gap: 1.2rem;
   margin-bottom: 0.2rem;
   span {
-    color: #bbaaff;
+    color: #6b7a8a;
     font-weight: 400;
   }
 `;
 
 export const PRGoToButton = styled.button`
-  background: rgba(139, 69, 255, 0.10);
+  background: rgba(11, 108, 255, 0.08);
   border: none;
   border-radius: 50%;
   padding: 0.5rem;
@@ -160,11 +163,14 @@ export const PRGoToButton = styled.button`
   height: 2.2rem;
   width: 2.2rem;
   &:hover {
-    background: rgba(139, 69, 255, 0.18);
+    background: rgba(11, 108, 255, 0.14);
     transform: scale(1.08);
   }
   svg {
     display: block;
+  }
+  svg path {
+    stroke: #0b6cff;
   }
 `;
 
@@ -182,26 +188,26 @@ export const PRFilters = styled.div`
 `;
 
 export const PRSelect = styled.select`
-  background: linear-gradient(135deg, #e9e4f0 0%, #d3cce3 100%);
-  color: #4b267d;
-  border: 1.5px solid rgba(139, 69, 255, 0.18);
+  background: #fafbfc;
+  color: #0b2b4a;
+  border: 1px solid rgba(11, 44, 77, 0.08);
   border-radius: 10px;
-  padding: 0.5rem 1.1rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   outline: none;
   transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
-  box-shadow: 0 2px 8px rgba(139, 69, 255, 0.10);
+  box-shadow: 0 6px 18px rgba(11, 44, 77, 0.04);
 
   &:focus {
-    background: linear-gradient(135deg, #f5f7fa 0%, #b7aaff 100%);
-    border: 1.5px solid #8b45ff;
-    color: #8b45ff;
-    box-shadow: 0 0 0 2px rgba(139, 69, 255, 0.18);
+    background: #fff;
+    border: 1.5px solid #0b6cff;
+    color: #0b6cff;
+    box-shadow: 0 0 0 4px rgba(11, 108, 255, 0.08);
   }
 
   option {
     background: #fff;
-    color: #4b267d;
+    color: #0b2b4a;
   }
 `;
