@@ -70,7 +70,7 @@ public class CustomOauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHa
             String jwt = jwtService.generateToken(account);
             LOGGER.info("Token generated for userId={}", account.getUserId());
 
-            // 5) create a http cookie use the jwt and redirect the user to the dash board
+            // 5) create a cookie that holds the jwt and send it the frontend
 
             // same=None and secure=true means the cookie will be sent in cross-site requests only if they are sent over HTTPS
             // this won't work on localhost

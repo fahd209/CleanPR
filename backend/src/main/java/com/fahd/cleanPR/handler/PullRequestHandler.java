@@ -1,9 +1,6 @@
 package com.fahd.cleanPR.handler;
 
-import com.fahd.cleanPR.model.Installation;
-import com.fahd.cleanPR.model.PullRequest;
-import com.fahd.cleanPR.model.Repo;
-import com.fahd.cleanPR.model.Status;
+import com.fahd.cleanPR.model.*;
 import com.fahd.cleanPR.repository.InstallationRepository;
 import com.fahd.cleanPR.repository.PullRequestRepository;
 import com.fahd.cleanPR.repository.RepoRepository;
@@ -108,7 +105,7 @@ public class PullRequestHandler extends BaseEventHandler{
         // 1) create pull request model
         PullRequest pullRequest = (PullRequest) createPullRequest(webHookPayload);
 
-        // 2) insert to db
+        // 2) insert to db - so it can be fetch by the UI
         pullRequestRepository.save(pullRequest);
 
         // the installation and repo are needed for installation and repo specific information
@@ -154,7 +151,7 @@ public class PullRequestHandler extends BaseEventHandler{
         // 6) prompt chatgpt for a code summary and code comments
         String pullRequestSummary = openAiCaller.reviewCode(codePatches, prFiles, "summary");
         String codeCommentsJson = openAiCaller.reviewCode(codePatches, prFiles, "comments");
-        List<Map<String, Object>> codeCommentsList = convertJsonCommentsToMap(codeCommentsJson);
+        List<CommentDTO> codeCommentsList = convertJsonCommentsToMap(codeCommentsJson);
 
         // 7) post chat gpts response in the pr
 
@@ -172,16 +169,24 @@ public class PullRequestHandler extends BaseEventHandler{
 
     }
 
-    private List<Map<String, Object>> convertJsonCommentsToMap(String codeCommentsJson) throws JsonProcessingException {
+    private List<CommentDTO> convertJsonCommentsToMap(String codeCommentsJson) throws JsonProcessingException {
         String parsedJson = codeCommentsJson.strip().replace("```json", "").replace("```", "");
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(parsedJson);
-        List<Map<String, Object>> commentList = new ArrayList<>();
+        List<CommentDTO> commentList = new ArrayList<>();
 
         for (JsonNode commentNode : jsonNode) {
             Map<String, Object> comment = mapper.convertValue(commentNode, new TypeReference<Map<String, Object>>() {});
-            commentList.add(comment);
+
+            CommentDTO commentDTO = CommentDTO.builder()
+                    .line((int) comment.get("line"))
+                    .side((String) comment.get("side"))
+                    .body((String) comment.get("body"))
+                    .path((String) comment.get("path"))
+                    .build();
+
+            commentList.add(commentDTO);
         }
 
         return commentList;

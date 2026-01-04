@@ -31,18 +31,25 @@ public class OpenAiCaller {
                 """;
 
         // adding code patches to the user prompt
+        userMessage += "--------------------------------------------------------";
         userMessage += "Code patches:\n \n";
         for(String codePatch : codePatches) {
             userMessage += codePatch;
             userMessage += "\n ";
         }
+        userMessage += "--------------------------------------------------------";
+
+
         userMessage += "\n Pull Request files: ";
+        userMessage += "\n the code below is for context only";
 
         // adding pr files content to the user message
         for(String prFile : prFiles) {
             userMessage += prFile;
             userMessage += "\n ";
         }
+
+        System.out.println(userMessage);
 
         return chatClient.prompt()
                 .system(systemMessage)

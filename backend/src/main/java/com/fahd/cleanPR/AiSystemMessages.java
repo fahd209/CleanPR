@@ -18,6 +18,7 @@ public interface AiSystemMessages {
                 Your response:
                     you will respond in markdown, no emoji's and the markdown will 
                     look professional like a senior engineer just wrote it.
+                    don't add any back ticks to the response for example "```markdown" or "```"
             """;
 
     String COMMENT_ACTION_SYSTEM_MESSAGE = """
@@ -30,7 +31,23 @@ public interface AiSystemMessages {
                     each comment should be for a specific line number
                     Make sure that comments are professional and no emojis 
                     
-                    your response will be as follow
+                    for the line value make sure that your choosing lines
+                    based on the hunk header for example: @@ -12,6 +12,7 @@
+                    is telling you the old file starts at line 12 and spans 6 lines
+                    and the new file starts at line 12 and spans 7 lines. make sure
+                    you add you comment to a line that between the new files line, and also
+                    make sure its not out of bounds. 
+                    
+                    all the code patches are between a separator
+                    
+                    for example: 
+                    
+                    -------------------------------------------
+                    code patches....
+                    -------------------------------------------
+                    
+                    
+                    your response will be as follow:
                     
                     [
                         {

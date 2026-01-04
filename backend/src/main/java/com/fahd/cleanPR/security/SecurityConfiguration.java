@@ -66,7 +66,7 @@ public class SecurityConfiguration {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
 
-        System.out.println("Client URL: " + CLIENT_URL);
+//        System.out.println("Client URL: " + CLIENT_URL);
         return source;
     }
 

@@ -1,5 +1,6 @@
 package com.fahd.cleanPR.util;
 
+import com.fahd.cleanPR.model.CommentDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,7 +87,7 @@ public class GitHubServiceCaller {
 
     public ResponseEntity<String> postReview(String url,
                                              String summary,
-                                             List<Map<String, Object>> codeCommentList,
+                                             List<CommentDTO> codeCommentList,
                                              String accessToken) {
         ResponseEntity<String> response = null;
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -101,6 +102,7 @@ public class GitHubServiceCaller {
             body.put("comments", codeCommentList);
 
             HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(body, httpHeaders);
+
             response = restTemplate.exchange(
                     url,
                     HttpMethod.POST,
@@ -109,7 +111,7 @@ public class GitHubServiceCaller {
         } catch (Exception e) {
             // if an error happened post to pr with intruction on what to do
             Map<String, Object> body = new HashMap<>();
-            body.put("body", "Clean pr was unable to post the code review. Please try closing the pr opening it again," +
+            body.put("body", "We were unable to review the code. Please try closing the pr opening it again," +
                     "if it still doesn't work please try again later :)");
             body.put("event", "COMMENT");
 
