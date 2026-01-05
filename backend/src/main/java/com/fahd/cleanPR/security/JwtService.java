@@ -56,10 +56,14 @@ public class JwtService {
                 .getBody();
     }
 
-    public boolean isTokenValid(String token, String userId) {
-        String subject = extractSubject(token);
-        Date expirationDate = extractExpirationDate(token);
-        return subject.equals(userId) && new Date(System.currentTimeMillis()).before(expirationDate);
+    public boolean isTokenValid(String token, String currentSubject) {
+        try {
+            String subject = extractSubject(token);
+            Date expirationDate = extractExpirationDate(token);
+            return subject.equals(currentSubject) && new Date(System.currentTimeMillis()).before(expirationDate);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public SecretKey getSignInKey() {

@@ -20,10 +20,6 @@ public abstract class BaseEventHandler {
         logger.info(message);
     }
 
-    public void logSuccess(String message) {
-        logger.info(message);
-    }
-
     public void logError(String message) {
         logger.info(message);
     }
